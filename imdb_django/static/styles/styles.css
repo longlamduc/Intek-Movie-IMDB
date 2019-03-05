@@ -1,0 +1,111 @@
+/*Now the styles*/
+* {
+    margin: 0; 
+	padding: 0;
+}
+
+body {
+	background-image: linear-gradient(#1d1414, #091a29); 
+	font-family: arial, verdana, tahoma;
+}
+
+/*Time to apply widths for accordian to work
+Width of image = 1200px
+total images = 8
+so width of hovered image = 640px
+width of un-hovered image = 40px - you can set this to anything
+so total container width = 640 + 40*4 = 800px;
+default width = 1200/8 = 150px;
+*/
+
+.accordian {
+	width: 1200px; height: 320px;
+	overflow: hidden;
+    background-image: linear-gradient(#350726, #1c0222, #111111);
+	/*Time for some styling*/
+	margin: 20px 100px 100px 100px ;
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+}
+
+/*A small hack to prevent flickering on some browsers*/
+.accordian ul {
+	width: 1200px;
+	/*This will give ample space to the last item to move
+	instead of falling down/flickering during hovers.*/
+}
+
+.accordian li {
+	position: relative;
+	display: block;
+	width: 150px;
+	float: left;
+
+	
+	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	
+	/*Transitions to give animation effect*/
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	/*If you hover on the images now you should be able to 
+	see the basic accordian*/
+}
+
+
+/*Reduce with of un-hovered elements*/
+.accordian ul:hover li {width: 40px;}
+/*Lets apply hover effects now*/
+/*The LI hover style should override the UL hover style*/
+.accordian ul li:hover {
+    width: 920px;
+}
+
+
+.accordian li img {
+    display: block;
+}
+
+/*Image title styles*/
+.image_title {
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	left: 0; bottom: 0;	
+    width: 640px;	
+
+}
+.image_title a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 20px;
+	font-size: 16px;
+}
+
+nav {
+    background-color: rgba(247, 3, 3, 0);
+    width: 1200px;
+    margin-left: 100px;
+    border-radius: 50px;
+}
+.movie-genre {
+    margin-top: 200px;
+    color: rgb(206, 37, 51);
+    font-family: sans-serif;
+    margin-left: 100px
+}
+
+.movie-info {
+    overflow: hidden;
+    color: rgb(8, 168, 173);
+}
+
+.movie-info h2{
+    color: rgb(167, 28, 97)
+}
+nav .container .navbar-brand {
+    color: rgb(82, 255, 255)
+}
