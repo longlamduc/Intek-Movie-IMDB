@@ -25,7 +25,6 @@ def register(request):
             return HttpResponse('Invalid password/username')
     else:
         user_form = UserForm()
-        context = {}
     return render(request, 'accounts/register.html', {"form" : user_form})
 
 
