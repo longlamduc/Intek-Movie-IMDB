@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig'
+    'accounts.apps.AccountsConfig',
+    'movies.apps.MoviesConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'movies/static'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
