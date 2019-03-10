@@ -1,0 +1,15 @@
+{% block content %}
+  <ul>
+      {% for cate in cate_list %}
+      <li>
+        <div class="">
+          {{ cate.cate_name }}
+          <a href="delete/{{ cate.id }}">Delete</a>
+          <a href="edit/{{ cate.id }}">Edit</a>
+        </div>
+      </li>
+      {% endfor %}
+  </ul>
+<a href="{% url 'add_cate' %}">Add category</a>
+<br>
+{% endblock %}

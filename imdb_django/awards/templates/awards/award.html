@@ -1,0 +1,12 @@
+{% block content %}
+  <ul>
+    {% for award in award_list %}
+      <li>
+        <div class="">
+          <a href="{{ award.id }}/">{{ award.name }}</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+<a href="{% url 'add_award' %}">Add award</a>
+{% endblock %}

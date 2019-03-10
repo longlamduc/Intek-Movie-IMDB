@@ -1,0 +1,20 @@
+{% block content %}
+  Name: {{ award.name }}
+  <br>
+  Kind: {{ award.kind }}
+  <br>
+  {% for celeb in award.celebs.all %}
+    Celeb: {{ celeb.first_name }} {{ celeb.last_name }}
+    <br>
+  {% endfor %}
+  {% for movie in award.movies.all %}
+    Movie: {{ movie.title }}
+    <br>
+  {% endfor %}
+  <br>
+  <a href="{% url 'edit_award' award.id %}">Edit Award</a>
+  <br>
+  <a href="{% url 'delete_award' award.id %}">Delete Award</a>
+  <br>
+  <a href="{% url 'award' %}">Home</a>
+{% endblock %}

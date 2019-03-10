@@ -1,0 +1,28 @@
+{% block content %}
+  {{ celeb.first_name }} {{ celeb.last_name }}
+  <br>
+  {{ celeb.birthday }}
+  <br>
+  {{ celeb.sex }}
+  <br>
+  {{ celeb.nationality }}
+  <br>
+  {{ celeb.is_alive }}
+  <br>
+  {% for movie in celeb.movie_set.all %}
+    {{ movie.title }}
+    <br>
+  {% endfor %}
+  <br>
+  Award:
+  <br>
+  {% for award in celeb.award_set.all %}
+    <a href="{% url 'award_detail' award.id %}">{{ award.name }}</a>
+    <br>
+  {% endfor %}
+  <br>
+  <a href="{% url 'edit_celeb' celeb.id %}">Edit</a>
+  <br>
+  <a href="{% url 'delete_celeb' celeb.id %}">Delete</a>
+  <a href="{% url 'celeb' %}">Home</a>
+{% endblock %}
