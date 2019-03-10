@@ -1,0 +1,12 @@
+{% block content %}
+  <ul>
+    {% for movie in movie_list %}
+      <li>
+        <div class="">
+          <a href="{{ movie.id }}/">{{ movie.title }}</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+<a href="{% url 'add_movie' %}">Add movie</a>
+{% endblock %}

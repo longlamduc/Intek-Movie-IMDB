@@ -1,0 +1,43 @@
+{% block content %}
+  {{ movie.title }}
+  <br>
+  {{ movie.description }}
+  <br>
+  {{ movie.category }}
+  <br>
+  {{ movie.release_date }}
+  <br>
+  {{ movie.logo }}
+  <br>
+  {{ movie.trailer }}
+  <br>
+  {% for celeb in movie.celebs.all %}
+    {{ celeb.first_name }} {{ celeb.last_name }}
+    <br>
+  {% endfor %}
+  <br>
+  Award:
+  <br>
+  {% for award in movie.award_set.all %}
+    <a href="{% url 'award_detail' award.id %}">{{ award.name }}</a>
+  {% endfor %}
+  <br>
+  Comment:
+  {% for comment in movie.comment_set.all %}
+    {{ comment.username }}: {{ comment.content }}: {{ comment.movie.title }}
+    <br>
+    <a href="{% url 'edit_comment' movie.id comment.id %}">Edit comment</a>
+    <br>
+    <a href="{% url 'delete_comment' movie.id comment.id %}">Delete comment</a>
+    <br>
+  {% endfor %}
+  {% if user.username != "" %}
+    <a href="comment/add">Add comment</a>
+  {% endif %}
+  <br>
+  <a href="{% url 'edit_movie' movie.id %}">Edit Movie</a>
+  <br>
+  <a href="{% url 'delete_movie' movie.id %}">Delete Movie</a>
+  <br>
+  <a href="{% url 'movie' %}">Home</a>
+{% endblock %}

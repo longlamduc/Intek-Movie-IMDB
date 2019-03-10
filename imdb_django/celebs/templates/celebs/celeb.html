@@ -1,0 +1,12 @@
+{% block content %}
+  <ul>
+    {% for celeb in celeb_list %}
+      <li>
+        <div class="">
+          <a href="{{ celeb.id }}/">{{ celeb.first_name }} {{ celeb.last_name }}</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+<a href="{% url 'add_celeb' %}">Add celeb</a>
+{% endblock %}
