@@ -18,3 +18,4 @@ class Celeb(models.Model):
 
    class Meta:
        ordering = ('first_name', 'last_name', )
+       unique_together = ('first_name', 'last_name', )

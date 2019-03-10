@@ -14,10 +14,6 @@ def add_celeb(request):
     if request.method == 'POST':
         form = CelebForm(request.POST)
         if form.is_valid():
-            f = form.cleaned_data.get('first_name')
-            l = form.cleaned_data.get('last_name')
-            if Celeb.objects.filter(first_name=f, last_name=l).count() != 0:
-                raise ValidationError('This movie existed')
             celeb = form.save(commit=False)
             celeb.save()
             return redirect('celeb')
