@@ -2,9 +2,16 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import MovieForm
 from .models import Movie
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
+
 # Create your views here.
 def movie(request):
-    return render(request, 'movies/movie.html', {'movie_list': Movie.objects.all()})
+    movies = Movie.objects.all()
+    cates = Movie.objects.values_list('category')
+    context = {
+        'movies': movies,
+        'categories': cates,
+    }
+    return render(request, 'movies/movie.html', context)
 
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
@@ -16,9 +23,9 @@ def add_movie(request):
         if form.is_valid() and form.checkName():
             movie = form.save(commit=False)
             if movie.logo == "":
-                movie.logo = "abc"
+                movie.logo = "None"
             if movie.trailer == "":
-                movie.trailer = "abc"
+                movie.trailer = "None"
             movie.save()
             form.save_m2m()
             return redirect('movie')

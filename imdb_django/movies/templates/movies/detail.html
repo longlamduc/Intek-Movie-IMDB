@@ -41,3 +41,263 @@
   <br>
   <a href="{% url 'movie' %}">Home</a>
 {% endblock %}
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+{% load static %}
+{% block styling %}
+<link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet"
+    integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+<link href="{% static 'movies/style.css' %}" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//www.youtube.com/iframe_api"></script>
+<script
+    src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+{% endblock %}
+{% block header %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'intek_logo.png' %}" style="height: 50px;">
+            <strong>IMDB INTEK</strong>
+        </a>
+        <ul class="navbar-nav mr-auto pt-3 pt-lg-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                    id="themesDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Movies
+                </a>
+                <div class="dropdown-menu dropdown-themes border-0 shadow
+                    animate slideIn"
+                    aria-labelledby="themesDropdown">
+                    <div class="d-lg-flex flex-row">
+                        <div>
+                            <a class="dropdown-item head font-weight-bold"
+                                href="#"> Browse All </a>
+                            <div class="dropdown-divider"> </div>
+                            <h6 class="dropdown-header">Movies Categories:</h6>
+                            <a class="dropdown-item"
+                                href="/themes/admin-dashboard/">Action</a>
+                            <a class="dropdown-item"
+                                href="/themes/landing-pages/">Comedy</a>
+                            <a class="dropdown-item"
+                                href="/themes/business-corporate/">Horror</a>
+                            <a class="dropdown-item"
+                                href="/themes/portfolio-resume/">Animated</a>
+                            <a class="dropdown-item" href="/themes/blog/">Adventure</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                    id="themesDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Celebrities
+                </a>
+                <div class="dropdown-menu dropdown-themes border-0
+                    shadow animate slideIn"
+                    aria-labelledby="themesDropdown">
+                    <div class="d-lg-flex flex-row">
+                        <div>
+                            <a class="dropdown-item head font-weight-bold"
+                                href="#"> Browse All </a>
+                            <div class="dropdown-divider"> </div>
+                            <h6 class="dropdown-header">Popular searching:</h6>
+                            <a class="dropdown-item"
+                                href="#">Robert Downey Jr</a>
+                            <a class="dropdown-item"
+                                href="#">Emma
+                                Stone</a>
+                            <a class="dropdown-item"
+                                href="#">Leonardo
+                                Dicaprio</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+
+        {% if not user.is_authenticated %}
+        <a class="btn btn-outline-info btn-lg" href="{% url 'accounts:login'%}">
+            Sign in </a>
+        {% else %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#"
+                        id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{ user.username }}
+                    </a>
+                    <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+                    <div class="dropdown-menu dropdown-menu-right animate
+                        slideIn" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><strong>Profile</strong></a>
+                        <hr>
+                        <a class="dropdown-item" href="{% url 'accounts:logout'%}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</nav>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block content %}
+<!-- LIght Box Hidden Popup-->
+<!-- thumbnail wrapped in a link -->
+
+<section class="hero-banner">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="headerPopup" class="mfp-hide embed-responsive embed-responsive-21by9 ">
+                    <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/qN3OueBm9F4?autoplay=1"
+                        style="margin-top: 100px"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="hero-banner__img">
+                        <img class="img-fluid"
+                            src="https://i.pinimg.com/originals/ac/2f/58/ac2f58d9275e2399279c1fda4220178c.jpg"
+                            alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 pl-xl-4">
+                    <div class="hero-banner__content">
+                        <h1 class="movie-title">Runner Blade 2049</h1>
+                        <p class="movie-info-expand">Lorem ipsum dolor sit amet, mazim ludus disputando ex sit, usu in sumo disputationi. Eu brute illud has, ut intellegam omittantur liberavisse vis. Tollit forensibus duo ut. Vel at stet volumus disputationi, putent complectitur in his. Ex nec tamquam legendos elaboraret, eum ea tacimates constituam. Vim tamquam dignissim an, discere adipisci at quo. His quodsi timeam ut, ne vim affert docendi periculis.
+
+                                Commodo recusabo pro eu, in labores inimicus usu, assum quidam doctus no sea. Soleat equidem consequuntur id qui, fierent reprehendunt ei nec. Quem antiopam vix id, at mei dicunt melius dolorum. An homero recteque appellantur ius, omnis nusquam mediocritatem mei ad.
+                                
+                                An mea labore prompta convenire, sit habeo dolorum inermis te. Doctus voluptua adolescens ei nam, eam cu decore legimus atomorum, utroque dolores has ne. No aeterno fastidii ocurreret sed, sit et autem fierent. Ius virtute suavitate patrioque et, aeque deleniti suscipiantur ius te. Cetero fabulas admodum vel ne, nam ut quando omnesque facilisis.
+                                
+                                Ut autem facilis patrioque vix, ad nec utinam rationibus, alia probo constituto an has. Id mei elit movet viris. Mel cu officiis volutpat, id cibo graece sapientem vix. Mei ne solet vitae nonumes, prima disputando pro in.
+                                
+                                Eum id summo everti feugiat, te vim aliquam officiis comprehensam, per te solet utroque. In quem diceret pertinax quo, mundi choro disputando nam ne. Sit et modus etiam homero. Pro esse persius apeirian at, cum an simul nemore civibus. Mel sadipscing definitiones id, an mei dicat summo alienum.</p>
+                            <a href="#headerPopup" id="headerVideoLink" target="_blank"
+                        class="btn btn-outline-danger popup-modal">Play Trailer <i class="fa fa-play-circle" style="font-size:20px"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="write-review py-5" id="write-review" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Overall Rating</h5>
+                        </div>
+                        <div class="col-md-4 text-warning">
+                            <i class="fa fa-star overall"></i>
+                            <i class="fa fa-star overall"></i>
+                            <i class="fa fa-star overall"></i>
+                            <i class="fa fa-star overall"></i>
+                            <i class="fa fa-star overall"></i>
+                        </div>
+                    </div>
+
+                    <hr style="border-width: 10px; border-color: #111111b9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>User-1</p>
+                        </div>
+                        <div class="col-md-2 text-warning">
+                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                class="fa fa-star"></i>
+                        </div>
+                        <div class="col-md-6">
+                            <p>This movie is great! I've never watched it yet!</p>
+                        </div>
+
+                    </div>
+                    
+                    <hr>
+                    <div class="row pb-3">
+                        <div class="col-md-12">
+                            <button class="btn btn-info" onclick="toggleCommentForm()"> <i class="fas fa-pen-nib"> Write Review</i> <button>
+                        </div>
+                    </div>
+                     <div class="row pb-3" id="comment">
+                        <div class="col-md-12">
+                            <form >
+                                <label class="sr-only" for="inlineFormInputName2">Name</label>
+                                <input type="text" class="form-control mb-2" id="inlineFormInputName2" placeholder="Write your comment">
+                                <button type="submit" class="btn btn-primary mb-2 float-right">Post</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<script>
+    $(function() {
+       $(window).scroll(function () {
+          if ($(this).scrollTop() > 10) {
+             $("nav").addClass("changeColor")
+          }
+          if ($(this).scrollTop() < 10) {
+             $("nav").removeClass("changeColor")
+          }
+       });
+    });
+
+$(document).ready(function() {
+  $('#headerVideoLink').magnificPopup({
+    type:'inline',
+    midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+  });
+
+});
+function toggleCommentForm() {
+  var x = document.getElementById("comment");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+    {% endblock %}

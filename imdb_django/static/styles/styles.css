@@ -5,7 +5,7 @@
 }
 
 body {
-	background-image: linear-gradient(#1d1414, #091a29); 
+	background-image: linear-gradient(#1d1414, #020618); 
 	font-family: arial, verdana, tahoma;
 }
 
@@ -67,6 +67,7 @@ default width = 1200/8 = 150px;
 
 .accordian li img {
     display: block;
+    width: 150px;
 }
 
 /*Image title styles*/
@@ -107,5 +108,8 @@ nav {
     color: rgb(167, 28, 97)
 }
 nav .container .navbar-brand {
-    color: rgb(82, 255, 255)
+    color: rgb(252, 252, 252)
+}
+.navbar-brand img{
+    border-radius: 50%;
 }
