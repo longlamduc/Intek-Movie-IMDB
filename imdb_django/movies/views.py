@@ -1,17 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .forms import MovieForm
 from .models import Movie
+from category.models import Category
 from django.core.exceptions import NON_FIELD_ERRORS, ValidationError
 
 # Create your views here.
 def movie(request):
     movies = Movie.objects.all()
-    cates = Movie.objects.values_list('category')
+    cates = Category.objects.all()
     context = {
         'movies': movies,
         'categories': cates,
     }
-    return render(request, 'movies/movie.html', context)
+    return render(request, 'movies/index.html', context)
 
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, id=movie_id)
@@ -29,9 +30,11 @@ def add_movie(request):
             movie.save()
             form.save_m2m()
             return redirect('movie')
+        else:
+            return HttpResponse("Invalid form!")
     else:
         form = MovieForm()
-    return render(request, 'movies/movie_form.html', {'form': form})
+    return render(request, 'movies/form.html', {'form': form})
 
 def edit_movie(request, movie_id=None):
     item = get_object_or_404(Movie, id=movie_id)
@@ -45,7 +48,7 @@ def edit_movie(request, movie_id=None):
         movie.save()
         form.save_m2m()
         return redirect('movie')
-    return render(request, 'movies/movie_form.html', {'form': form})
+    return render(request, 'movies/form.html', {'form': form})
 
 def delete_movie(request, movie_id=None):
     Movie.objects.get(id=movie_id).delete()

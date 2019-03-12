@@ -12,6 +12,10 @@ class Movie(models.Model):
    trailer = models.CharField(max_length=200, blank=True)
    celebs = models.ManyToManyField(Celeb, blank=True)
 
+   def getEmbedLink(self):
+        """ Convert the field 'trailer' that can be embed on the page """
+        return self.trailer.replace('watch?v=', 'embed/')
+
    def __str__(self):
        return self.title
 

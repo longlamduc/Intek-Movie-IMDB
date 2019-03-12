@@ -1,0 +1,53 @@
+{% extends 'base_navbar.html' %}
+{% load static %}
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'movies/style-form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="movie-form">
+
+    <div class="container">
+            <h1 class="form-name">Movie Form</h1>
+            <form method="POST">
+                {% csrf_token %}
+                    {{ form.title.errors }}
+                    <label for="title" >Title</label>
+                    <input name="title" id="title" type="text" class="feedback-input" placeholder="title" value="{{ form.title.value }}" />
+        
+                    {{ form.description.errors }}
+                    <label for="description">Description</label>
+                    <input name="description" type="text" class="feedback-input" placeholder="description" value="{{form.description.value}}">
+    
+                    <label for="id_category">Category</label>
+                    <select class="form-control select-category"  name="category" required id="id_category">
+                        {% for cate in form.category %}
+                        {% if cate %}
+                            {{ cate }}
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    
+                    {{ form.release_date.errors }}
+                    <label for="release_date">Date</label>
+                    <input name="release_date" type="text" class="feedback-input" value="{{ form.release_date.value }}" id="release_date"/>
+
+                    {{ form.logo.errors }}
+                    <label for="logo">Logo</label>
+                    <input name="logo" type="text" class="feedback-input" value="{{form.logo.value}}" id="logo"/>
+
+                    {{ form.trailer.errors }}
+                    <label for="trailer"> Trailer </label>
+                    <input name="trailer" type="text" class="feedback-input" value="{{form.trailer.value}}" id="trailer"/>
+                    <h3 class="text-center" style="color: rgb(221, 103, 103)">Casts:</h3>
+                    <div class="select-celebs">
+                        {% for celeb in form.celebs %}
+                        <div class="select-checkbox">{{ celeb }}</div>
+                        {% endfor %}
+                    </div>
+                    <input type="submit" name="" value="Save"/>
+                </form>
+    </div>
+</section>
+{% endblock %}

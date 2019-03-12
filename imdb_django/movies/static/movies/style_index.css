@@ -11,10 +11,10 @@ default width = 1200/8 = 150px;
 .accordian {
 	width: 1200px; height: 320px;
 	overflow: hidden;
-    /* background-image: linear-gradient( #522e4d, #1f111e,);  */
-    background: #111d2c65;
+    background-image: linear-gradient( #703e6a, #381f36,); 
+
 	/*Time for some styling*/
-	margin: 20px 100px 100px 100px ;
+	margin: 20px 100px 0px 100px ;
 	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
 	-webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
     -moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
@@ -117,7 +117,3 @@ default width = 1200/8 = 150px;
     color: aliceblue;
 }
 
-.btn-admin-red{
-    background-color: #ce4444fd;
-    border: 2px #c72a2a
-}

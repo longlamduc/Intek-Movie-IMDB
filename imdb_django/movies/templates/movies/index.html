@@ -1,0 +1,96 @@
+{% extends 'base_navbar.html' %}
+{% load static from staticfiles %}
+
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'movies/style_index.css' %}" rel="stylesheet">
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+{% endblock %}
+
+{% block movie-categories %}
+    {% for category in categories %}
+    <a class="dropdown-item" href="#{{category}}">{{ category|title }}</a>
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<section class="main">
+
+    {% for category in categories %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="movie-genre" id="{{category}}">{{category|title}}
+                    {% if user.is_superuser %}
+                    <span style="float:right; margin-right:150px; font-family:
+                        Impact; position: relative">
+                        <a href="{% url 'add_movie' %}" class="btn btn-info
+                            btn-admin"><i class="fas fa-plus">Add</i></a>
+                    </span>
+                    {% endif %}
+                </h1>
+
+
+            <hr style="border-width: 5px; border-color: rgb(69, 172, 158);
+                width: 1200px; margin-left:100px">
+            <!-- Single Slide -->
+            <div class="accordian">
+                <ul>
+                    {% for movie in movies %}
+                    {% if movie.category == category %}
+                    <li>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="image_title">
+                                    <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }} </a>
+                                </div>
+                                <div id="image_logo">
+                                    <a
+                                        href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
+                                        <img src="{{ movie.logo }}" alt="none" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 movie-info">
+                                {% if user.is_superuser %}
+                                <div class="edit-btn">
+                                    <a href="{% url 'movie_edit' movie.id %}"
+                                        class="btn btn-info btn-admin"> <i
+                                            class="fas fa-edit"> Edit</i></a>
+                                    <a href="{% url 'movie_delete' movie.id %}"
+                                        class="btn btn-danger"><i class="fas
+                                            fa-minus-circle"> Delete</i></a>
+                                </div>
+
+                                {% endif %}
+                                <a href="{% url 'movie_detail' movie.id %}">
+                                    <h2 class="movie-title"><strong>{{ movie.title }}</strong></h2>
+                                </a>
+                                <p1>Rating: 5.0</p1>
+                                <p1>{{movie.id}}</p1>
+                                <br>
+                                <p1>Released: {{ movie.release_date }}</p1>
+                                <br>
+                                <p1 class="description">{{ movie.description|truncatewords:50 }}</p1>
+                                <hr style="border-width: 4px; margin-right:
+                                    0px;
+                                    border-color:rgb(167, 167, 167)">
+                                <p>Cast: </p>
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% endfor %}
+
+
+
+    </section>
+    {% endblock %}

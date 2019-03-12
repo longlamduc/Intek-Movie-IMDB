@@ -28,15 +28,10 @@
                                 href="#"> Browse All </a>
                             <div class="dropdown-divider"> </div>
                             <h6 class="dropdown-header">Movies Categories:</h6>
-                            <a class="dropdown-item"
-                                href="/themes/admin-dashboard/">Action</a>
-                            <a class="dropdown-item"
-                                href="/themes/landing-pages/">Comedy</a>
-                            <a class="dropdown-item"
-                                href="/themes/business-corporate/">Horror</a>
-                            <a class="dropdown-item"
-                                href="/themes/portfolio-resume/">Animated</a>
-                            <a class="dropdown-item" href="/themes/blog/">Adventure</a>
+                            <!-- <a class="dropdown-item"
+                                href="/themes/admin-dashboard/">Action</a> -->
+                            {% block movie-categories %}
+                            {% endblock %}
                         </div>
                     </div>
                 </div>

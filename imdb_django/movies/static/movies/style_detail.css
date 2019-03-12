@@ -27,8 +27,8 @@ body {
 }
 
 .hero-banner .container :hover{
-    transition: 1s;
-    transform: rotateY(5deg);
+    transition: 0.5s;
+    transform: rotateY(0deg);
 }
 
 .fa-star{
@@ -47,6 +47,7 @@ body {
 
 .movie-info-expand{
     color: #a1a1a1e3
+    
 }
 #headerPopup{
     width: 90%;
@@ -61,6 +62,7 @@ body {
 .write-review{
     background: linear-gradient(#280d29, #143944)
 }
+
 .write-review .container{
     background: #d4d4d2;
     padding-top : 50px;
@@ -69,3 +71,20 @@ body {
     border-radius: 10px;
 }
 
+.edit-btn{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.award {
+    font-size: 40px;
+    color: #37bb7d;
+}
+.award a{
+    margin-top: 10px;
+    color: #d6cd4b;
+    font-family: Helvetica;
+    font-weight:500;
+    font-size: 18px;
+}

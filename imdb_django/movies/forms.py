@@ -18,3 +18,9 @@ class MovieForm(ModelForm):
             self.errors['title'] = ['This movie existed']
             return False
         return True
+
+    def embedTrailer(self):
+        """ Convert the field 'trailer' that can be embed on the page """
+        return self.cleaned_data.get('trailer').replace('watch?v=', 'embed/')
+ 
+        
