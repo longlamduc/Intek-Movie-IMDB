@@ -1,5 +1,36 @@
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" name="" value="Save">
-</form>
+{% extends 'base_navbar.html' %}
+{% load static %}
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'movies/style-form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="movie-form">
+    <div class="container">
+
+            <h1 class="form-name">Movie Form</h1>
+            <form>      
+                    <input name="title" type="text" class="feedback-input" placeholder="title" />
+                    <textarea name="description" type="text" class="feedback-input" placeholder="description"></textarea>
+                    <select class="form-control select-category">
+                        {% for cate in form.category %}
+                        {% if cate %}
+                            <option value="{{ cate }}"></option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input name="release_date" type="text" class="feedback-input" placeholder="release date" />
+                    <input name="logo" type="text" class="feedback-input" placeholder="logo link" />
+                    <input name="trailer" type="text" class="feedback-input" placeholder="trailer link" />
+                    <h3 class="text-center" style="color: rgb(221, 103, 103)">Casts:</h3>
+                    <div class="select-celebs">
+                        {% for celeb in form.celebs %}
+                        <div class="select-checkbox">{{ celeb }}</div>
+                        {% endfor %}
+                    </div>
+                    <input type="submit" value="SUBMIT"/>
+                </form>
+    </div>
+</section>
+{% endblock %}

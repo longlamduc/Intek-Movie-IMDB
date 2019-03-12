@@ -5,7 +5,8 @@
 }
 
 body {
-	background-image: linear-gradient(#1d1414, #020618); 
+    background:rgb(30,30,40);
+	/* background-image: linear-gradient(#1d1414, #020618);  */
 	font-family: arial, verdana, tahoma;
 }
 

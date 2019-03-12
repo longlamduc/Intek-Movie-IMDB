@@ -11,7 +11,8 @@ default width = 1200/8 = 150px;
 .accordian {
 	width: 1200px; height: 320px;
 	overflow: hidden;
-    background-image: linear-gradient(#350726, #1c0222, #111111);
+    /* background-image: linear-gradient( #522e4d, #1f111e,);  */
+    background: #111d2c65;
 	/*Time for some styling*/
 	margin: 20px 100px 100px 100px ;
 	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
@@ -38,9 +39,9 @@ default width = 1200/8 = 150px;
 	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
 	
 	/*Transitions to give animation effect*/
-	transition: 0.5s;
-	-webkit-transition:  0.5s;
-	-moz-transition:  0.5s;
+	transition: 0.5s all;
+	-webkit-transition:  0.5s all;
+	-moz-transition:  0.5s all;
 	/*If you hover on the images now you should be able to 
 	see the basic accordian*/
 }
@@ -57,7 +58,7 @@ default width = 1200/8 = 150px;
 
 .accordian li img {
     display: block;
-    width: 400px;
+    width: 420px;
     min-height: 320px;
     height: auto;
     overflow: hidden;
@@ -66,34 +67,35 @@ default width = 1200/8 = 150px;
 /*Image title styles*/
 .image_title {
     background: rgba(0, 0, 0, 0.767);
-	left: 14px; right: 10px;	bottom: 0;
-    width: 405px;	
+    left: 14px; right: 10px;	
+    margin-left: 0px;
+    width: 403px;	
 }
 
 .image_title a {
 	display: block;
 	color: rgb(252, 252, 252);
 	text-decoration: none;
-	padding: 20px;
 	font-size: 16px;
 }
 
 
 .movie-genre {
     margin-top: 200px;
-    color: rgb(206, 37, 51);
-    font-family: sans-serif;
-    margin-left: 100px
+    color: rgb(206, 50, 63);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-left: 100px;
 }
 
 .movie-info {
     overflow: hidden;
     color: rgb(8, 168, 173);
+    margin-left:100px; 
 
 }
 
 .movie-info h2{
-    color: deeppink
+    color: rgb(201, 58, 134)
 }
 .movie-info a:hover{
     text-decoration-color: deeppink;
@@ -115,12 +117,7 @@ default width = 1200/8 = 150px;
     color: aliceblue;
 }
 
-.edit-btn a{
-    color: rgb(0, 0, 0);
-    background-color: rgb(219, 35, 35);
-
-}
-
-.edit-btn :hover {
-    color: rgb(255, 255, 255);
+.btn-admin-red{
+    background-color: #ce4444fd;
+    border: 2px #c72a2a
 }
