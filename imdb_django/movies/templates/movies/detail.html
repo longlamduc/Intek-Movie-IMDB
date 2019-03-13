@@ -108,7 +108,7 @@
                             <a class="text-award" href="{% url 'award_detail' award.id %}">{{ award.name }} <i class="fas fa-award"></i></a>
                         {% endfor %}
                     </div>
-                
+
                     {% if user.is_superuser %}
                     <div class="edit-btn">
                         <a href="{% url 'movie_edit' movie.id %}"
@@ -142,10 +142,11 @@
                     </div>
 
                     <hr style="border-width: 10px; border-color: #111111b9">
+
+                    {% for comment in movie.comment_set.all %}
                     <div class="row">
-                    
                         <div class="col-md-4">
-                            <p>User-1</p>
+                            <p>{{ comment.username }}</p>
                         </div>
                         <div class="col-md-2 text-warning">
                             <i class="fa fa-star"></i><i class="fa fa-star"></i><i
@@ -153,9 +154,10 @@
                                 class="fa fa-star"></i>
                         </div>
                         <div class="col-md-6">
-                            <p>This movie is great! I've never watched it yet!</p>
+                            <p>{{ comment.content }}</p>
                         </div>
                     </div>
+                    {% endfor %}
 
                     <hr>
                     <div class="row pb-3">
@@ -167,14 +169,15 @@
                             </div>
                             <div class="row pb-3" id="comment">
                                 <div class="col-md-12">
-                                    <form>
+                                    <form action="{% url 'add_comment' movie.id %}" method="post">
+                                      {% csrf_token %}
                                         <label class="sr-only"
                                             for="inlineFormInputName2">Name</label>
                                         <input type="text"
                                             class="form-control mb-2"
                                             id="inlineFormInputName2"
-                                            placeholder="Write your
-                                            comment">
+                                            placeholder="Write your comment"
+                                            name="content">
                                         <button type="submit" class="btn
                                             btn-primary mb-2 float-right">Post</button>
                                     </form>

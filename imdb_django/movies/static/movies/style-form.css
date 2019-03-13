@@ -52,7 +52,6 @@ textarea {
 
 .select-category{
     color:white;
-    font-family: Helvetica, Arial, sans-serif;
     font-weight:500;
     font-size: 18px;
     border-radius: 5px;
@@ -81,7 +80,7 @@ textarea {
     width:100%;
     box-sizing: border-box;
     outline:0;
-    margin-bottom: 50px; 
+    margin-bottom: 50px;
 }
 .select-actor{
     color: antiquewhite
@@ -97,4 +96,8 @@ label {
     font-weight: bold;
     display: block;
     width: 150px;
+}
+#id_category{
+  padding:  0px;
+  margin: 0px;
 }

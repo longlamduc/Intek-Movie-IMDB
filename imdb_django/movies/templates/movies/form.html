@@ -15,11 +15,11 @@
                     {{ form.title.errors }}
                     <label for="title" >Title</label>
                     <input name="title" id="title" type="text" class="feedback-input" placeholder="title" value="{{ form.title.value }}" />
-        
+
                     {{ form.description.errors }}
                     <label for="description">Description</label>
                     <input name="description" type="text" class="feedback-input" placeholder="description" value="{{form.description.value}}">
-    
+
                     <label for="id_category">Category</label>
                     <select class="form-control select-category"  name="category" required id="id_category">
                         {% for cate in form.category %}
@@ -28,12 +28,12 @@
                         {% endif %}
                         {% endfor %}
                     </select>
-                    
+
                     {{ form.release_date.errors }}
                     <label for="release_date">Date</label>
                     <input name="release_date" type="text" class="feedback-input" value="{{ form.release_date.value }}" id="release_date"/>
 
-                    {{ form.logo.errors }}
+
                     <label for="logo">Logo</label>
                     <input name="logo" type="text" class="feedback-input" value="{{form.logo.value}}" id="logo"/>
 

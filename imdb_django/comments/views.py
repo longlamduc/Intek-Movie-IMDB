@@ -6,16 +6,23 @@ from movies.models import Movie
 # Create your views here.
 def add_comment(request, movie_id=None):
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.username = request.user.username
-            comment.movie = Movie.objects.get(id=movie_id)
-            comment.save()
-            return redirect('movie_detail', movie_id)
-    else:
-        form = CommentForm()
-    return render(request, 'comments/comment_form.html', {'form': form})
+        print(request.user)
+        # form = CommentForm()
+        # comment = request.POST.get('content')
+        # comment.username = str(request.user)
+        # comment.movie = Movie.objects.get(id=movie_id)
+        # comment.save()
+        content = request.POST.get('content')
+        movie = Movie.objects.get(id=movie_id)
+        username = request.user
+        comment = Comment(content=content, movie=movie, username=username)
+        comment.save()
+        return redirect('movie_detail', movie_id)
+    # else:
+    #     comment_form = CommentForm()
+    #     return redirect('movie_detail', movie_id)
+    # return render(request, 'comments/comment_form.html', {'form': form})
+
 
 def edit_comment(request, movie_id=None, comment_id=None):
     item = get_object_or_404(Comment, id=comment_id)

@@ -48,6 +48,8 @@ def edit_movie(request, movie_id=None):
         movie.save()
         form.save_m2m()
         return redirect('movie')
+    else :
+        print(1)
     return render(request, 'movies/form.html', {'form': form})
 
 def delete_movie(request, movie_id=None):
