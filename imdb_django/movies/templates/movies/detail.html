@@ -129,7 +129,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <h5>Overall Rating</h5>
                         </div>
                         <div class="col-md-4 text-warning">
@@ -144,8 +144,9 @@
                     <hr style="border-width: 10px; border-color: #111111b9">
 
                     {% for comment in movie.comment_set.all %}
+
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <p>{{ comment.username }}</p>
                         </div>
                         <div class="col-md-2 text-warning">
@@ -154,8 +155,15 @@
                                 class="fa fa-star"></i>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ comment.content }}</p>
+                            <p id="comment-{{comment.id}}">{{ comment.content }}</p>
                         </div>
+                        {% if user.username == comment.username %}
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-outline-info"
+                            onclick="toggleCommentFormEdit( {{comment.id}} )">Edit</button>
+                            <a href="{% url 'delete_comment' movie.id comment.id %}" class="btn btn-outline-danger" >Delete</a>
+                        </div>
+                        {% endif %}
                     </div>
                     {% endfor %}
 
@@ -169,13 +177,13 @@
                             </div>
                             <div class="row pb-3" id="comment">
                                 <div class="col-md-12">
-                                    <form action="{% url 'add_comment' movie.id %}" method="post">
+                                    <form id="form-comment" action="comment/add/" method="post">
                                       {% csrf_token %}
                                         <label class="sr-only"
-                                            for="inlineFormInputName2">Name</label>
+                                            for="comment-content">content</label>
                                         <input type="text"
                                             class="form-control mb-2"
-                                            id="inlineFormInputName2"
+                                            id="comment-content"
                                             placeholder="Write your comment"
                                             name="content">
                                         <button type="submit" class="btn
@@ -189,7 +197,7 @@
                 </div>
             </section>
 
-
+comment/add/
 <script>
     $(function() {
        $(window).scroll(function () {
@@ -209,6 +217,14 @@ $(document).ready(function() {
   });
 
 });
+function toggleCommentFormEdit(comment_id){
+    var form = document.getElementById("form-comment");
+    form.action = "comment/edit/"+comment_id+"/";
+    var content_area = document.getElementById("comment-content");
+    var content_val = document.getElementById("comment-"+comment_id).innerHTML;
+    content_area.value = content_val;
+
+};
 function toggleCommentForm() {
   var x = document.getElementById("comment");
   if (x.style.display === "none") {
@@ -216,6 +232,6 @@ function toggleCommentForm() {
   } else {
     x.style.display = "none";
   }
-}
+};
 </script>
             {% endblock %}
