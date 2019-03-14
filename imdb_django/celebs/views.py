@@ -1,10 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CelebForm
 from .models import Celeb
-
+from movies.models import Movie
+from awards.models import Award
 # Create your views here.
 def celeb(request):
-    return render(request, 'celebs/index.html', {'celeb_list': Celeb.objects.all()})
+    movies = Movie.objects.all()[:3]
+    celebs = Celeb.objects.all()[:3]
+    context = {
+        'movies': movies,
+        'celebs': celebs,
+        'celeb_list': Celeb.objects.all()
+    }
+    return render(request, 'celebs/index.html', context=context)
 
 def celeb_detail(request, celeb_id=None):
     celeb = get_object_or_404(Celeb, id=celeb_id)
