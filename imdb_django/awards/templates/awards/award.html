@@ -1,5 +1,22 @@
+{% extends 'base_navbar.html' %}
+{% load static %}
+
+{% block styling %}
+    {{ block.super }}
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'awards/index.css' %}">
+
+{% endblock %}
+
+
+
+
+
 {% block content %}
-  <ul>
+<!-- <ul>
     {% for award in award_list %}
       <li>
         <div class="">
@@ -8,5 +25,38 @@
       </li>
     {% endfor %}
   </ul>
-<a href="{% url 'add_award' %}">Add award</a>
+<a href="{% url 'add_award' %}">Add award</a> -->
+
+<section class="awards" style="margin-top: 100px;">
+    <div class="container">
+        <div class="row">
+            {% for award in award_list %}
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 box" >
+                <div class="box-part text-center">
+                    {% if award.kind == "Movie" %}
+                        <i class="fas fa-trophy trophy" ></i>
+                    {% else %}
+                        <i class="fas fa-award trophy"></i>
+                    {% endif %}
+                    <div class="title">
+                        <a href="{% url 'award_detail' award.id %}" >{{award.name}}</a>
+                    </div>
+
+                    <div class="text">
+                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+                    </div>
+                
+                 </div>
+                 {% if user.is_superuser %}
+                 <div class="edit-area">
+                    <a class="btn btn-outline-info btn-sm btn-bend-left" href="{% url 'edit_award' award.id %}" >Edit</a>
+                    <a class="btn btn-outline-danger btn-sm btn-bend-right" href="{% url 'delete_award' award.id %}" >Delete</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+       
+       </div>		
+   </div>
+</section>
 {% endblock %}

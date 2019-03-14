@@ -23,7 +23,9 @@ body {
     transition: 1s;
     box-shadow: 0 4px 8px 0 rgba(59, 54, 54, 0.342), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transform: perspective(1200px) rotateY(20deg);
-
+}
+.hero-banner__img img{
+    min-height: 600px;
 }
 
 .hero-banner .container :hover{

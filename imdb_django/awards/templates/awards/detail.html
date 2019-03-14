@@ -1,5 +1,18 @@
+{% extends 'base_navbar.html' %}
+{% load static %}
+
+{% block styling %}
+    {{ block.super }}
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'awards/detail.css' %}">
+
+{% endblock %}
+
 {% block content %}
-  Name: {{ award.name }}
+  <!-- Name: {{ award.name }}
   <br>
   Kind: {{ award.kind }}
   <br>
@@ -16,5 +29,46 @@
   <br>
   <a href="{% url 'delete_award' award.id %}">Delete Award</a>
   <br>
-  <a href="{% url 'award' %}">Home</a>
-{% endblock %}
+  <a href="{% url 'award' %}">Home</a> -->
+
+
+  <section class="awards" style="margin-top: 200px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="box-part text-center">
+                    {% if award.kind == "Movie" %}
+                        <i class="fas fa-trophy trophy" ></i>
+                    {% else %}
+                        <i class="fas fa-award trophy"></i>
+                    {% endif %}
+
+                    <h1 style="color:rgb(248, 218, 248)" >{{ award.name }}</h1>
+    
+
+                 </div>
+                 {% if user.is_superuser %}
+                 <div class="edit-area">
+                    <a class="btn btn-outline-info btn-sm btn-bend-left" href="{% url 'edit_award' award.id %}" >Edit</a>
+                    <a class="btn btn-outline-danger btn-sm btn-bend-right" href="{% url 'delete_award' award.id %}" >Delete</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col">
+                <div class="title">
+                        <a href="{% url 'movie' %}" >Movies:</a>
+                </div>
+                <ul class="list-group">
+                {% for movie in award.movies.all %}
+                <li class="list-group-item movie-item">
+                    <a href="{% url 'movie_detail' movie.id %}" >{{ movie.title }}</a>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+
+       
+       </div>		
+   </div>
+</section>
+{% endblock %} -->

@@ -3,6 +3,10 @@
 {% load static %}
 {% block styling %}
     <link href="{% static 'styles/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
 {% endblock %}
 {% block header %}
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -24,12 +28,14 @@
                     aria-labelledby="themesDropdown">
                     <div class="d-lg-flex flex-row">
                         <div>
-                            <a class="dropdown-item head font-weight-bold"
-                                href="#"> Browse All </a>
+                            <a class="dropdown-item head font-weight-bold " href="{% url 'movie' %}"> Browse All </a>
                             <div class="dropdown-divider"> </div>
-                            <h6 class="dropdown-header">Movies Categories:</h6>
-                            <!-- <a class="dropdown-item"
-                                href="/themes/admin-dashboard/">Action</a> -->
+                            <h6 class="dropdown-header">Popular movies:</h6>
+                            {% for movie in movies %}
+                            <a class="dropdown-item text-danger"
+                                href="{% url 'movie_detail' movie.id %}">{{ movie}}</a>
+                            {% endfor %}
+
                             {% block movie-categories %}
                             {% endblock %}
                         </div>
@@ -49,21 +55,36 @@
                     <div class="d-lg-flex flex-row">
                         <div>
                             <a class="dropdown-item head font-weight-bold"
-                                href="#"> Browse All </a>
+                                href="{% url 'celeb' %}"> Browse All </a>
                             <div class="dropdown-divider"> </div>
                             <h6 class="dropdown-header">Popular searching:</h6>
-                            <a class="dropdown-item"
-                                href="#">Robert Downey Jr</a>
-                            <a class="dropdown-item"
-                                href="#">Emma
-                                Stone</a>
-                            <a class="dropdown-item"
-                                href="#">Leonardo
-                                Dicaprio</a>
+                            {% for celeb in celebs %}
+                            <a class="dropdown-item text-danger"
+                                href="{% url 'celeb_detail' celeb.id %}">{{ celeb}}</a>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#"
+                        id="themesDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Awards
+                    </a>
+                    <div class="dropdown-menu dropdown-themes border-0
+                        shadow animate slideIn"
+                        aria-labelledby="themesDropdown">
+                        <div class="d-lg-flex flex-row">
+                            <div>
+                                <a class="dropdown-item head font-weight-bold"
+                                    href="{% url 'award' %}"> Browse All </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
         </ul>
 
 

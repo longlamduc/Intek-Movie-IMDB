@@ -114,3 +114,13 @@ nav .container .navbar-brand {
 .navbar-brand img{
     border-radius: 50%;
 }
+
+.icon-browse{
+    font-size: 50px;
+    padding: 10px 50px;
+}
+.icon-browse a{
+    text-decoration: none;
+    color: antiquewhite;
+    padding: 50px;
+}
