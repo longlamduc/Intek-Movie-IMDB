@@ -12,11 +12,11 @@
             <h1 class="form-name">Movie Form</h1>
             <form method="POST">
                 {% csrf_token %}
-                    {{ form.title.errors }}
+                    <strong class="error-mess">{{ form.title.errors }}</strong>
                     <label for="title" >Title</label>
                     <input name="title" id="title" type="text" class="feedback-input" placeholder="title" value="{{ form.title.value }}" />
 
-                    {{ form.description.errors }}
+                    <strong class="error-mess">{{ form.description.errors }}</strong>
                     <label for="description">Description</label>
                     <input name="description" type="text" class="feedback-input" placeholder="description" value="{{form.description.value}}">
 
@@ -29,15 +29,15 @@
                         {% endfor %}
                     </select>
 
-                    {{ form.release_date.errors }}
+                    <strong class="error-mess">{{ form.release_date.errors }}</strong>
                     <label for="release_date">Date</label>
-                    <input name="release_date" type="text" class="feedback-input" value="{{ form.release_date.value }}" id="release_date"/>
+                    <input name="release_date" type="text" class="feedback-input" value="{{ form.release_date.value|date:'d/m/Y' }}" id="release_date"/>
 
 
                     <label for="logo">Logo</label>
                     <input name="logo" type="text" class="feedback-input" value="{{form.logo.value}}" id="logo"/>
 
-                    {{ form.trailer.errors }}
+                    <strong class="error-mess">{{ form.trailer.errors }}</strong>
                     <label for="trailer"> Trailer </label>
                     <input name="trailer" type="text" class="feedback-input" value="{{form.trailer.value}}" id="trailer"/>
                     <h3 class="text-center" style="color: rgb(221, 103, 103)">Casts:</h3>

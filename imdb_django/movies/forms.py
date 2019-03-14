@@ -12,7 +12,7 @@ class MovieForm(ModelForm):
         model = Movie
         fields = '__all__'
 
-    def checkName(self):
+    def check_name(self):
         title = self.cleaned_data.get('title')
         if Movie.objects.filter(title = title).count() != 0:
             self.errors['title'] = ['This movie existed']
@@ -22,5 +22,3 @@ class MovieForm(ModelForm):
     def embedTrailer(self):
         """ Convert the field 'trailer' that can be embed on the page """
         return self.cleaned_data.get('trailer').replace('watch?v=', 'embed/')
- 
-        

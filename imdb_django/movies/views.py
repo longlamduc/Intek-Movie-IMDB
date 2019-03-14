@@ -21,17 +21,15 @@ def movie_detail(request, movie_id):
 def add_movie(request):
     if request.method == 'POST':
         form = MovieForm(request.POST)
-        if form.is_valid() and form.checkName():
+        if form.is_valid() and form.check_name():
             movie = form.save(commit=False)
-            if movie.logo == "":
-                movie.logo = "None"
-            if movie.trailer == "":
-                movie.trailer = "None"
+            if movie.logo == "" or movie.logo == 'None':
+                movie.logo = "http://3i5l7a3z22cj3ekuoz27ji2k.wpengine.netdna-cdn.com/wp-content/uploads/2018/12/Aquaman.jpg"
+            if movie.trailer == "" or movie.trailer == 'None':
+                movie.trailer = "https://www.youtube.com/watch?v=y66QKqto3qE"
             movie.save()
             form.save_m2m()
             return redirect('movie')
-        else:
-            return HttpResponse("Invalid form!")
     else:
         form = MovieForm()
     return render(request, 'movies/form.html', {'form': form})
@@ -41,15 +39,13 @@ def edit_movie(request, movie_id=None):
     form = MovieForm(request.POST or None, instance=item)
     if form.is_valid():
         movie = form.save(commit=False)
-        if movie.logo == "":
-            movie.logo = "abc"
-        if movie.trailer == "":
-            movie.trailer = "abc"
+        if movie.logo == "" or movie.logo == 'None':
+            movie.logo = "http://3i5l7a3z22cj3ekuoz27ji2k.wpengine.netdna-cdn.com/wp-content/uploads/2018/12/Aquaman.jpg"
+        if movie.trailer == "" or movie.trailer == 'None':
+            movie.trailer = "https://www.youtube.com/watch?v=y66QKqto3qE"
         movie.save()
         form.save_m2m()
         return redirect('movie')
-    else :
-        print(1)
     return render(request, 'movies/form.html', {'form': form})
 
 def delete_movie(request, movie_id=None):

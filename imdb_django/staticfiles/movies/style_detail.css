@@ -1,0 +1,90 @@
+body {
+    background: linear-gradient(#111111, #46113d);
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+}
+
+   
+
+.changeColor {
+    background-color: #000000e3;
+    transition: 0.5s;
+}
+
+.hero-banner .container{
+    margin-top: 80px;
+
+}
+.hero-banner__img{
+    transition: 1s;
+    box-shadow: 0 4px 8px 0 rgba(59, 54, 54, 0.342), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: perspective(1200px) rotateY(20deg);
+
+}
+
+.hero-banner .container :hover{
+    transition: 0.5s;
+    transform: rotateY(0deg);
+}
+
+.fa-star{
+    font-size : 20px;
+    color: #0fb986
+}
+.overall{
+    font-size: 30px;
+    color: #d85c09
+    
+}
+
+.movie-title {
+    color: #e64769;
+}
+
+.movie-info-expand{
+    color: #a1a1a1e3
+    
+}
+#headerPopup{
+    width: 90%;
+
+    margin: 50px 0px 50px 100px;
+  }
+
+
+.mfp-hide{
+    display: None !important;
+}
+.write-review{
+    background: linear-gradient(#280d29, #143944)
+}
+
+.write-review .container{
+    background: #d4d4d2;
+    padding-top : 50px;
+    padding-left: 100px;
+    padding-right: 100px;
+    border-radius: 10px;
+}
+
+.edit-btn{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.award {
+    font-size: 40px;
+    color: #37bb7d;
+}
+.award a{
+    margin-top: 10px;
+    color: #d6cd4b;
+    font-family: Helvetica;
+    font-weight:500;
+    font-size: 18px;
+}

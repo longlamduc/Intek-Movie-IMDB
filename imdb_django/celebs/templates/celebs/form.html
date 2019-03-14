@@ -1,0 +1,52 @@
+{% extends 'base_navbar.html' %}
+{% load static %}
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'celebs/style_form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<section class="celeb-form">
+
+    <div class="container">
+            <h1 class="form-name">Celeb Form</h1>
+            <form method="POST">
+                {% csrf_token %}
+                    <strong class="error-mess">{{ form.first_name.errors}}</strong>
+                    <label for="first_name">First Name</label>
+                    <input name="first_name" id="first_name" type="text" class="feedback-input" placeholder="first_name" value="{{ form.first_name.value }}" />
+
+                    <strong class="error-mess">{{ form.last_name.errors }}</strong>
+                    <label for="last_name">Last Name</label>
+                    <input name="last_name" type="text" class="feedback-input" placeholder="last_name" value="{{form.last_name.value}}">
+
+                    <strong class="error-mess">{{ form.birthday.errors }}</strong>
+                    <label for="birthday">Birthday</label>
+                    <input name="birthday" type="text" class="feedback-input" value="{{ form.birthday.value|date:'d/m/Y' }}"/>
+
+                    <label for="sex">Gender</label>
+                    <select class="form-control select-category"  name="sex" required id="id_category">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+
+                    <strong class="error-mess">{{ form.avatar.errors }}</strong>
+                    <label for="avatar">Avatar</label>
+                    <input name="avatar" type="text" class="feedback-input" value="{{ form.avatar.value }}"/>
+
+                    <strong class="error-mess">{{ form.nationality.errors }}</strong>
+                    <label for="nationality">Nationality</label>
+                    <input name="nationality" type="text" class="feedback-input" value="{{form.nationality.value}}"/>
+
+                    <label for="is_alive">Is he/she alive?</label>
+                    <select class="form-control select-category"  name="is_alive" required id="id_category">
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+
+                    <br>
+                    <input type="submit" name="" value="Save"/>
+                </form>
+    </div>
+</section>
+{% endblock %}

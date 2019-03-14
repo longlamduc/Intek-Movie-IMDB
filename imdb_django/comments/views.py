@@ -5,7 +5,6 @@ from movies.models import Movie
 # Create your views here.
 def add_comment(request, movie_id=None):
     if request.method == 'POST':
-        print(request.user)
         content = request.POST.get('content')
         movie = Movie.objects.get(id=movie_id)
         username = request.user

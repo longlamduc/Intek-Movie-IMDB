@@ -1,0 +1,93 @@
+{% extends 'base_navbar.html' %}
+{% load static from staticfiles %}
+
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'movies/style_index.css' %}" rel="stylesheet">
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<section class="main">
+    {% with "Male Female" as gender_list %}
+    {% for gender in gender_list.split %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="movie-genre" id="{{category}}">{{gender}}
+                    {% if user.is_superuser %}
+                    <span style="float:right; margin-right:150px; font-family:
+                        Impact; position: relative">
+                        <a href="{% url 'add_celeb' %}" class="btn btn-info
+                            btn-admin"><i class="fas fa-plus">Add</i></a>
+                    </span>
+                    {% endif %}
+                </h1>
+
+
+            <hr style="border-width: 5px; border-color: rgb(69, 172, 158);
+                width: 1200px; margin-left:100px">
+            <!-- Single Slide -->
+            <div class="accordian">
+                <ul>
+                    {% for celeb in celeb_list %}
+                    {% if celeb.sex == gender %}
+                    <li>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="image_title">
+                                    <a href="{% url 'celeb_detail' celeb.id %}">{{ celeb.first_name }} </a>
+                                </div>
+                                <div id="image_logo">
+                                    <a
+                                        href="{% url 'celeb_detail' celeb.id %}">
+                                        <img src="{{ celeb.avatar }}" alt="none" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 movie-info" style="overflow:hidden">
+                                {% if user.is_superuser %}
+                                <div class="edit-btn">
+                                    <a href="{% url 'edit_celeb' celeb.id %}"
+                                        class="btn btn-info btn-admin"> <i
+                                            class="fas fa-edit"> Edit</i></a>
+                                    <a href="{% url 'delete_celeb' celeb.id %}"
+                                        class="btn btn-danger"><i class="fas
+                                            fa-minus-circle"> Delete</i></a>
+                                </div>
+
+                                {% endif %}
+                                <a href="{% url 'celeb_detail' celeb.id %}">
+                                    <h2 class="movie-title"><strong>{{ celeb.first_name }} {{ celeb.last_name }}</strong></h2>
+                                </a>
+                                <p1>{{celeb.birthday}}</p1>
+                                <p1>{{celeb.nationality}}</p1>
+                                <br>
+                                <hr style="border-width: 4px; margin-right:
+                                    0px;
+                                    border-color:rgb(167, 167, 167)">
+                                <p style="font-size:1.5em;font-weight:bold">Movie:</p>
+                                {% for movie in celeb.movie_set.all %}
+                                  {% if forloop.counter0 < 3 %}
+                                    <a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a>
+                                    <br>
+                                  {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% endfor %}
+        {% endwith %}
+
+
+    </section>
+    {% endblock %}

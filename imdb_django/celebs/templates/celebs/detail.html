@@ -1,28 +1,60 @@
+{% extends 'base_navbar.html' %}
+{% block title %}Home{% endblock %}
+{% load static %}
+{% block styling %}
+
+<link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
+
+
+
+<link href="{% static 'celebs/style_detail.css' %}" rel="stylesheet">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//www.youtube.com/iframe_api"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.0.0/jquery.magnific-popup.min.js"></script>
+{% endblock %}
+
+
+
 {% block content %}
-  {{ celeb.first_name }} {{ celeb.last_name }}
-  <br>
-  {{ celeb.birthday }}
-  <br>
-  {{ celeb.sex }}
-  <br>
-  {{ celeb.nationality }}
-  <br>
-  {{ celeb.is_alive }}
-  <br>
-  {% for movie in celeb.movie_set.all %}
-    {{ movie.title }}
-    <br>
-  {% endfor %}
-  <br>
-  Award:
-  <br>
-  {% for award in celeb.award_set.all %}
-    <a href="{% url 'award_detail' award.id %}">{{ award.name }}</a>
-    <br>
-  {% endfor %}
-  <br>
-  <a href="{% url 'edit_celeb' celeb.id %}">Edit</a>
-  <br>
-  <a href="{% url 'delete_celeb' celeb.id %}">Delete</a>
-  <a href="{% url 'celeb' %}">Home</a>
+<!-- LIght Box Hidden Popup-->
+<!-- thumbnail wrapped in a link -->
+<section class="hero-banner">
+    <div class="container">
+
+        <div class="row">  <div class="row">
+                <div class="col-md-6">
+                    <div class="hero-banner__img">
+                        <img class="img-fluid"
+                            src="{{celeb.avatar}}"
+                            alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 pl-xl-4">
+                    <div class="hero-banner__content">
+                        <h1 class="celeb-name">{{celeb.first_name}} {{celeb.last_name}}</h1>
+                        <p class="celeb-info">Birthday: {{celeb.birthday|date:'d-m-Y'}}</p>
+                        <p class="celeb-info">Nationality: {{celeb.nationality}}</p>
+                    </div>
+                    <hr style="border-width:3px; ">
+                    <div class="award">Awards<br>
+                        {% for award in celeb.award_set.all %}
+                            <a class="text-award" href="{% url 'award_detail' award.id %}">{{ award.name }} <i class="fas fa-award"></i></a>
+                        {% endfor %}
+                    </div>
+                    {% if user.is_superuser %}
+                    <div class="edit-btn">
+                        <a href="{% url 'edit_celeb' celeb.id %}"
+                            class="btn btn-outline-info"> <i
+                            class="fas fa-edit"> Edit</i></a>
+                        <a href="{% url 'delete_celeb' celeb.id %}"
+                            class="btn btn-outline-danger"><i class="fas fa-minus-circle"> Delete</i></a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+</section>
 {% endblock %}
