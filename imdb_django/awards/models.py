@@ -10,7 +10,7 @@ class Award(models.Model):
     )
     name = models.CharField(max_length=100)
     kind = models.CharField(max_length=5, choices=KIND_CHOICES)
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True)
     movies = models.ManyToManyField(Movie)
     celebs = models.ManyToManyField(Celeb)
 
