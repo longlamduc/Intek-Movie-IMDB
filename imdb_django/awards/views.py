@@ -36,7 +36,7 @@ def edit_award(request, award_id=None):
         award.save()
         form.save_m2m()
         return redirect('award')
-    return render(request, 'awards/award_form.html', {'form': form})
+    return render(request, 'awards/award_form.html', {'form': form,'edit': 1})
 
 def delete_award(request, award_id=None):
     Award.objects.get(id=award_id).delete()

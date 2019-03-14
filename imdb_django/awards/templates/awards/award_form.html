@@ -1,5 +1,49 @@
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" name="" value="Save">
-</form>
+{% extends 'base_navbar.html' %}
+{% load static %}
+{% block styling %}
+{{ block.super }}
+<link href="{% static 'awards/form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section class="movie-form">
+    <div class="container">
+            <h1 class="form-name">Award form</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.title.errors }}
+                <label for="title" >Title</label>
+                <input name="name" id="title" type="text" class="feedback-input" placeholder="title" value="{{ form.name.value }}" />
+                {% if not edit %}
+                <select class="form-control select-category"  name="kind" required id="id_category">
+                        {% for k in form.kind %}
+                        {% if k %}
+                            {{ k }}
+                        {% endif %}
+                        {% endfor %}
+                </select>
+                {% endif %}
+
+                {{form.date.error}}
+                <input name="date" id="date" type="text" class="feedback-input" placeholder="Date" value="{{ form.date.value|date:'d/m/Y' }}" />
+                {% if form.movies %}
+                <h3 class="text-center" style="color: rgb(221, 103, 103)">Movies:</h3>
+                <div class="select-movies">
+                    {% for movie in form.movies %}
+                    {{ movie }}
+                    {% endfor %}
+                </div>
+                {% elif form.celebs %}
+                <h3 class="text-center" style="color: rgb(221, 103, 103)">Casts:</h3>
+                <div class="class-movies">
+                        {% for celeb in form.celebs %}
+                            {{ celeb }}
+                        {% endfor %}
+                </div>
+                {% endif %}
+                <input type="submit" name="" value="Save"/>
+            </form>
+    </div>
+</section>
+{% endblock %}

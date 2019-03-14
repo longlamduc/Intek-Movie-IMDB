@@ -15,7 +15,7 @@ class MovieForm(ModelForm):
     def check_name(self):
         title = self.cleaned_data.get('title')
         if Movie.objects.filter(title = title).count() != 0:
-            self.errors['title'] = ['This movie existed']
+            self.errors['title'] = 'This movie existed'
             return False
         return True
 

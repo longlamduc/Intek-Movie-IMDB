@@ -57,6 +57,13 @@
                         </a>
                     </div>
                     <hr style="border-width:3px; ">
+                    <div class="award">Casts<br>
+                    {% for celeb in movie.celebs.all %}
+                            <a class="text-award" href="{% url 'celeb_detail' celeb.id %}" >{{ celeb.first_name }} {{ celeb.last_name }}, </a>
+
+                    {% endfor %}
+                    <span class="text-award">...</span>
+                    </div>
                     <div class="award">Awards<br>
                         {% for award in movie.award_set.all %}
                             <a class="text-award" href="{% url 'award_detail' award.id %}">{{ award.name }} <i class="fas fa-award"></i></a>
@@ -104,9 +111,11 @@
                             <p>{{ comment.username }}</p>
                         </div>
                         <div class="col-md-2 text-warning">
-                            <i class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                class="fa fa-star"></i><i class="fa fa-star"></i><i
-                                class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
                         </div>
                         <div class="col-md-6">
                             <p id="comment-{{comment.id}}">{{ comment.content|truncatechars:50 }}</p>
@@ -120,8 +129,8 @@
                         {% endif %}
                     </div>
                     {% endfor %}
-
                     <hr>
+                    {% if user.is_authenticated %}
                     <div class="row pb-3">
                         <div class="col-md-12">
                             <button class="btn btn-info"
@@ -145,8 +154,15 @@
                                     </form>
                                 </div>
                             </div>
+                    </div>
+                    {% else %}
+                    <div class="row pb-3">
+                        <div class="col-md-12">
+                            <a class="btn btn-primary" href="{% url 'accounts:login' %}" <i class="fas fa-pen-nib"> Login to comment </i> <a>
                         </div>
-
+                        </div>
+                    </div>
+                    {% endif %}
                     </div>
                 </div>
             </section>
@@ -171,6 +187,7 @@ $(document).ready(function() {
   });
 
 });
+
 function toggleCommentFormEdit(comment_id){
     var form = document.getElementById("form-comment");
     form.action = "comment/edit/"+comment_id+"/";
@@ -179,13 +196,16 @@ function toggleCommentFormEdit(comment_id){
     content_area.value = content_val;
 
 };
+
 function toggleCommentForm() {
-  var x = document.getElementById("comment");
-  if (x.style.display === "none") {
-    x.style.display = "block";
+  var block = document.getElementById("comment");
+  var form = document.getElementById("form-comment");
+  form.action = "comment/add/";
+  if (block.style.display === "none") {
+    block.style.display = "block";
   } else {
-    x.style.display = "none";
+    block.style.display = "none";
   }
 };
 </script>
-            {% endblock %}
+{% endblock %}

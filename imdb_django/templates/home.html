@@ -2,43 +2,36 @@
 {% extends 'base_navbar.html' %}
 
 
-
 {% block content %}
 <!-- Page Content -->
-<section class="main">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="text-left movie-genre">Cartoon</h1>
-            <hr style="border-width: 5px; border-color: wheat; width: 1200px; margin-left:100px">
-            <!-- Single Slide -->
-            <div class="accordian">
-                <ul>
-                {% for i in i|rjust:8 %}
-                <li>
-                    <div class="row">
-                            <div class="col">
-                                <div class="image_title">
-                                    <a href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">KungFu Panda</a>
-                                </div>
-                                <a
-                                    href="https://www.youtube.com/channel/UCXTfDJ60DBmA932Du6B1ydg">
-                                    <img src="" alt="Not found"/>
-                                </a>
-                            </div>
-                            <div class="col movie-info">
-                                <h2 style="margin-top: 20px; overflow: hidden"><strong>KungFu Panda</strong></h2>
-                                <p1>Rating: 5.0</p1>
-                                <br>
-                                <p1>Released: 22-08-2018</p1>
-                                <hr style="border-width: 4px; margin-right: 20px; border-color:rgb(167, 167, 167)">
-                                <p>Cast: </p>
-                            </div>
-                        </div>
-                    </li>
-                {% endfor %}
-                </ul>
-            </div>
-        </div>
+<header>
+  <div class="overlay"></div>
 
-    </section>
-    {% endblock %}
+  <div class="container h-100" style="margin-top:100px">
+    <div class="d-flex h-100 text-center align-items-center">
+      <div class="w-100 text-white">
+        <h1 class="display-3">Intek Movie Manager</h1>
+        <p class="lead mb-4">Discover your favorite movies and more</p>
+        <hr style="border-width:5px; border-color:#d35353; width:450px; margin-left:30%; margin-right: 30%">
+        <div class="icon-browse">
+            <a  data-toggle="tooltip" data-placement="bottom" title="Movies" href="{% url 'movie' %}" >
+                <i class="fas fa-film"></i>
+
+            </a>
+            <a  data-toggle="tooltip" data-placement="bottom" title="Celebrities" href="{% url 'celeb' %}" >
+                <i class="fas fa-users"></i>
+
+            </a>
+            <a  data-toggle="tooltip" data-placement="bottom" title="Awards" href="{% url 'award' %}">
+                <i class="fas fa-award"></i>
+            </a>
+
+    </div>
+  </div>
+</header>
+    <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+    </script>
+{% endblock %}

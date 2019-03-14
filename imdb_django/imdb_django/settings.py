@@ -129,6 +129,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'movies/static'),
     os.path.join(BASE_DIR, 'celebs/static'),
+    os.path.join(BASE_DIR, 'awards/static'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles/')
